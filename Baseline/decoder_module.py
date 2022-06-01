@@ -148,7 +148,9 @@ class Decoder(nn.Module):
     def forward(self, features, captions, lengths, train=True):
         """Decode image feature vectors and generates captions."""
         self.train = train
-        embeddings = self.embed(captions)
+        import pdb;pdb.set_trace()
+        # embeddings = self.embed(captions)
+        embeddings = captions
         embeddings = torch.cat((features.unsqueeze(1), embeddings), 1)
         if self.stateful:
             no_of_timesteps = embeddings.shape[1]

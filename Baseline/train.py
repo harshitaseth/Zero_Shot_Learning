@@ -7,6 +7,7 @@ from data_loader import MyDataset
 from torch import device, save
 from losses import TripletLoss
 from utils import *
+from decoder_module import Decoder
 # from torch.utils.tensorboard import SummaryWriter
 
 # writer = SummaryWriter()
@@ -29,9 +30,10 @@ def train_model(loader, optimizer, model):
   
     for i, batch in enumerate(loader):
         optimizer.zero_grad()
+        import pdb;pdb.set_trace()
         tag, neg, spec, instrument_label = batch
         tag_emb,neg_emb, song_emb,classification = model(tag,neg, spec)
-
+        decoder(song_emb,tag_emb, lengths = 1)
         loss1 = triplet_loss(song_emb, tag_emb, neg_emb)
         loss2 =  criterion(classification, instrument_label)
         loss = loss1+loss2
@@ -80,7 +82,7 @@ if __name__ == '__main__':
     n_epochs = 100
     input_length = 173
     is_subset = False
-    data_path = "./Data/"
+    data_path = "/Users/harshita/Documents/MODULES/DL/CODES/Data/"
    
     checkpoints_path = "./checkpoints_with_instrument/"
 
@@ -98,6 +100,11 @@ if __name__ == '__main__':
 
 
     ##### Optimzers #################
+    embed_size = 256
+    hidden_size = 256
+    vocab = ""
+    num_layers = 3
+    decoder = Decoder(embed_size=embed_size, hidden_size=hidden_size, vocab_size=len(vocab), num_layers=num_layers, stateful=False)#.to(device)
     model = model.AudioModel()
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-4)
     triplet_loss = TripletLoss(margin = 0.1)

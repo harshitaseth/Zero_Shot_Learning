@@ -29,7 +29,7 @@ class AudioModel(nn.Module):
 
 	def spec_to_embedding(self, spec):
 		
-		import pdb;pdb.set_trace()
+		
 		
 		out = spec.unsqueeze(1)
 		out = self.spec_bn(out)
