@@ -113,7 +113,6 @@ class MyDataset(data.Dataset):
 			tag_emb,neg_tag_emb, spec, instrument_label = self.get_train_item(index)
 			return tag_emb.astype('float32'),neg_tag_emb.astype('float32'), spec.astype('float32'), instrument_label
 		elif (self.split == 'VALID') or (self.split == 'TEST'):
-			import pdb;pdb.set_trace()
 			tag_emb, neg_tag_emb, spec, instrument_label= self.get_eval_item(index)
 			# if len(tag_emb) <= 10:
 			# 	arr = [""] * (10 -len(tag_emb))
@@ -126,7 +125,7 @@ class MyDataset(data.Dataset):
 
 	def __len__(self):
 		if self.split == 'TRAIN':
-			return 10000
+			return 1000
 		elif (self.split == 'VALID') or (self.split == 'TEST'):
 			return len(self.eval_ids)
 

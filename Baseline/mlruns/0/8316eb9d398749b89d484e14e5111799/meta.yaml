@@ -1,0 +1,15 @@
+artifact_uri: file:///efs_storage/Harshita/Zero_Shot_Learning/Baseline/mlruns/0/8316eb9d398749b89d484e14e5111799/artifacts
+end_time: 1654606013434
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 8316eb9d398749b89d484e14e5111799
+run_uuid: 8316eb9d398749b89d484e14e5111799
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1654605969676
+status: 3
+tags: []
+user_id: ubuntu
